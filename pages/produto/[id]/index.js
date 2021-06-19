@@ -7,7 +7,7 @@ import Head from "next/head";
 import Image from "next/image";
 import React, { lazy, Suspense, useEffect } from "react";
 
-const Layout = lazy(() => import("../../../components/layout/Layout"));
+const Layout = lazy(() => import("../../../components/Layout"));
 
 const renderLoader = () => <p>Carregando...</p>;
 

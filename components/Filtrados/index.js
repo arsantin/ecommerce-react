@@ -39,7 +39,7 @@ const Filtrados = (props) => {
       {props.filmesFiltrados &&
         props.filmesFiltrados.map((filme) => {
           return (
-            <Link href="/movie/[id]" as={`/movie/${filme.id}`}>
+            <Link href="/produto/[id]" as={`/produto/${filme.id}`}>
               <a>
                 <Card filme={filme} />
               </a>

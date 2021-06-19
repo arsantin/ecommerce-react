@@ -6,7 +6,7 @@ const Card = lazy(() => import("../Card"));
 
 const renderLoader = () => <p>Carregando...</p>;
 
-const FilmesWrapper = styled.div`
+const ProdutosWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   h1 {
@@ -14,20 +14,20 @@ const FilmesWrapper = styled.div`
   }
 `;
 
-const Filmes = (props) => {
+const Produtos = (props) => {
   return (
     <Suspense fallback={renderLoader()}>
-      <FilmesWrapper>
+      <ProdutosWrapper>
         {props.data && (
-          <Link href="/movie/[id]" as={`/movie/${props.data.id}`}>
+          <Link href="/produto/[id]" as={`/produto/${props.data.id}`}>
             <a>
               <Card filme={props.data} />
             </a>
           </Link>
         )}
-      </FilmesWrapper>
+      </ProdutosWrapper>
     </Suspense>
   );
 };
 
-export default Filmes;
+export default Produtos;

@@ -33,7 +33,7 @@ const Categorias = (props) => {
             <button
               key={genre.id}
               className="red"
-              onClick={props.toggler}
+              onClick={props.adicionaCategoriaAoFiltro}
               value={genre.id}
             >
               {genre.name}

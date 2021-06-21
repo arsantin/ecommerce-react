@@ -1,17 +1,17 @@
 import * as types from "../types";
 
 const initialState = {
-  genres: [],
-  genre: {},
+  categorias: [],
+  categoria: {},
   loading: false,
   error: null,
 };
 
-export const genreReducer = (state = initialState, action) => {
+export const CategoriaReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_GENRE_LIST:
+    case types.PEGA_LISTA_CATEGORIAS:
       return {
-        genres: action.payload,
+        categorias: action.payload,
         loading: false,
         error: null,
       };

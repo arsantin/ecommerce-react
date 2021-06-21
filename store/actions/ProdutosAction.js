@@ -2,19 +2,12 @@ import * as types from "../types";
 import axios from "axios";
 
 
-export const fetchmovies = () => async (dispatch) => { 
+export const fetchProdutos = () => async (dispatch) => { 
 
   const res = await axios.get(
     "https://api.themoviedb.org/3/movie/popular?api_key=1cafedf2a856620e3b3fa86798661fe8&page=1"
   );
   
-  const  perPage = 4;
-  const contagem = await res.data.length
-
- 
-
-  const featMovie = await 
-
   dispatch({
     type: types.GET_POSTS,
     payload: res.data,
@@ -34,7 +27,7 @@ export const fetchpostdetails = (id) => async (dispatch) => {
   });
 };
 
-export const sendToFiltered = (id, name) => async (dispatch) => {  
+export const enviaParaCategoriasFiltradas = (id, name) => async (dispatch) => {  
   const obj= {
     id: id,
     name: name
@@ -46,7 +39,7 @@ export const sendToFiltered = (id, name) => async (dispatch) => {
   });  
 };
 
-export const removeFromFiltered = (id, name) => async (dispatch) => {  
+export const removeCategoriaFiltrada = (id, name) => async (dispatch) => {  
   const obj= {
     id: id,
     name: name
@@ -60,7 +53,7 @@ export const removeFromFiltered = (id, name) => async (dispatch) => {
   
 };
 
-export const cleanFilters = () => async (dispatch) => {
+export const resetaFiltros = () => async (dispatch) => {
   dispatch({
     type: types.CLEAN_FILTER
   });

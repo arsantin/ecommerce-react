@@ -1,47 +1,49 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
-  fetchmovies,
-  sendToFiltered,
-  removeFromFiltered,
-  cleanFilters
-} from "../store/actions/moviesAction";
+  fetchProdutos,
+  enviaParaCategoriasFiltradas,
+  removeCategoriaFiltrada,
+  resetaFiltros,
+} from "../store/actions/ProdutosAction";
 import { listaCategorias } from "../store/actions/CategoriasAction";
-import IndexWrapper from './styles'
-const Pagination = lazy(() => import('../components/Pagination'))
-const Filmes = lazy(() => import('../components/Produtos'))
-const MeusFiltros = lazy(() => import('../components/MeusFiltros'))
-const Categorias = lazy(() => import('../components/Categorias'));
-const Layout = lazy(() => import('../components/Layout'))
-const Filtrados = lazy(() => import('../components/Filtrados'));
+import IndexWrapper from "./styles";
+import Carrinho from '../components/Carrinho'
+const Pagination = lazy(() => import("../components/Pagination"));
+const Produtos = lazy(() => import("../components/Produtos"));
+const MeusFiltros = lazy(() => import("../components/MeusFiltros"));
+const Categorias = lazy(() => import("../components/Categorias"));
+const Layout = lazy(() => import("../components/Layout"));
+const Filtrados = lazy(() => import("../components/Filtrados"));
 const renderLoader = () => <p>Carregando...</p>;
 
-
 const Index = () => {
-const [menuMob, setmenuMob] = useState(false);    
+  const [menuMob, setmenuMob] = useState(false);
   const dispatch = useDispatch();
   const [filmesFiltrados, setfilmesFiltrados] = useState([]);
-  const { posts, filteredList } = useSelector((state) => state.post);
-  const { genres } = useSelector((state) => state.genre);
+  const { produtos, listaDeProdutosFiltrados } = useSelector(
+    (state) => state.produto
+  );
+  const { categorias } = useSelector((state) => state.categoria);
 
   useEffect(() => {
-    dispatch(fetchmovies());
+    dispatch(fetchProdutos());
     dispatch(listaCategorias());
   }, []);
 
   useEffect(() => {
     produtosFiltrados();
-  }, [filteredList]);
+  }, [listaDeProdutosFiltrados]);
 
   function produtosFiltrados() {
-    const initialState = posts.results;
-    let filtroDeGeneros = [];
-    filteredList.map((eachCat) => {
-      filtroDeGeneros.push(parseInt(eachCat.id));
+    const initialState = produtos.results;
+    let filtroDeCategorias = [];
+    listaDeProdutosFiltrados.map((eachCat) => {
+      filtroDeCategorias.push(parseInt(eachCat.id));
     });
-    const filterByTagSet = new Set(filtroDeGeneros);
+    const filterByTagSet = new Set(filtroDeCategorias);
     if (initialState) {
       const result = initialState.filter((o) =>
         o.genre_ids.some((tag) => filterByTagSet.has(tag))
@@ -55,66 +57,77 @@ const [menuMob, setmenuMob] = useState(false);
     const name = e.target.innerText;
     const id = e.target.value;
     e.disabled = true;
-    dispatch(sendToFiltered(id, name));    
+    dispatch(enviaParaCategoriasFiltradas(id, name));
   }
 
-  function removeFromChoices(e) {
+  function removeDasCategoriasEscolhidas(e) {
     e.preventDefault();
     const name = e.target.innerText;
     const id = e.target.value;
-    dispatch(removeFromFiltered(id, name));
+    dispatch(removeCategoriaFiltrada(id, name));
     produtosFiltrados();
   }
 
-  function cleanAllFilter(){
-    dispatch(cleanFilters());
+  function resetaFiltroCategoria() {
+    dispatch(resetaFiltros());
     produtosFiltrados();
   }
 
-  function abreMenu(){
-    setmenuMob(!menuMob)
+  function abreMenu() {
+    setmenuMob(!menuMob);
   }
 
-  function fechaMenu(){
-    setmenuMob(!menuMob)
+  function fechaMenu() {
+    setmenuMob(!menuMob);
   }
 
   return (
     <Suspense fallback={renderLoader()}>
-    <Layout>
-      <IndexWrapper>
-        <div className="ham" onClick={abreMenu}>MENU</div>
-                
-        <div className={menuMob ? 'hidden' : 'fixed show'}>  
-        <div onClick={fechaMenu} className="fechar">Fechar X</div>             
-          {filteredList.length > 0 && <MeusFiltros
-            filteredList={filteredList}
-            removeFromChoices={removeFromChoices}
-            cleanAllFilter={cleanAllFilter}
-          />}
-          
-          <Categorias genres={genres} adicionaCategoriaAoFiltro={adicionaCategoriaAoFiltro} abreMenu={abreMenu}/>
-        </div>
-        <div class="content">
-          {filmesFiltrados.length > 0 ? (
-            <Filtrados filmesFiltrados={filmesFiltrados}/>
-          ) : (
-            <>   
-            {posts.results && <Pagination
-            data={posts.results}
-            RenderComponent={Filmes}
-            title="Catálogo"
-            pageLimit={4}
-            dataLimit={6}
-          />}             
-            
-          </>
-          )}
-        </div>
-        <div>
-    </div>
-      </IndexWrapper>
-    </Layout>
+      <Layout>
+        <IndexWrapper>
+          <div className="ham" onClick={abreMenu}>
+            MENU
+          </div>
+
+          <div className={menuMob ? "hidden" : "fixed show"}>
+            <div onClick={fechaMenu} className="fechar">
+              Fechar X
+            </div>
+            <Carrinho/>
+            {listaDeProdutosFiltrados.length > 0 && (
+              <MeusFiltros
+                listaDeProdutosFiltrados={listaDeProdutosFiltrados}
+                removeDasCategoriasEscolhidas={removeDasCategoriasEscolhidas}
+                resetaFiltroCategoria={resetaFiltroCategoria}
+              />
+            )}
+
+            <Categorias
+              categorias={categorias}
+              adicionaCategoriaAoFiltro={adicionaCategoriaAoFiltro}
+              abreMenu={abreMenu}
+            />
+          </div>
+          <div class="content">
+            {filmesFiltrados.length > 0 ? (
+              <Filtrados filmesFiltrados={filmesFiltrados} />
+            ) : (
+              <>
+                {produtos.results && (
+                  <Pagination
+                    data={produtos.results}
+                    RenderComponent={Produtos}
+                    title="Catálogo"
+                    pageLimit={4}
+                    dataLimit={6}
+                  />
+                )}
+              </>
+            )}
+          </div>
+          <div></div>
+        </IndexWrapper>
+      </Layout>
     </Suspense>
   );
 };

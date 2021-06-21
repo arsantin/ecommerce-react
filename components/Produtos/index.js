@@ -18,12 +18,8 @@ const Produtos = (props) => {
   return (
     <Suspense fallback={renderLoader()}>
       <ProdutosWrapper>
-        {props.data && (
-          <Link href="/produto/[id]" as={`/produto/${props.data.id}`}>
-            <a>
-              <Card filme={props.data} />
-            </a>
-          </Link>
+        {props.data && (          
+              <Card produto={props.data} />            
         )}
       </ProdutosWrapper>
     </Suspense>

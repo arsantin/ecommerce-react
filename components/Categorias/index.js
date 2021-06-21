@@ -27,8 +27,8 @@ const Categorias = (props) => {
   return (
     <CategoriasWrapper>
       <h5>Categorias</h5>      
-      {props.genres.genres &&
-        props.genres.genres.map((genre) => {
+      {props.categorias.genres &&
+        props.categorias.genres.map((genre) => {
           return (
             <button
               key={genre.id}

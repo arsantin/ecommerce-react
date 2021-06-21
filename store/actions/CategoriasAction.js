@@ -6,7 +6,7 @@ export const listaCategorias = () => async (dispatch) => {
     "https://api.themoviedb.org/3/genre/movie/list?api_key=1cafedf2a856620e3b3fa86798661fe8"
   );
   dispatch({
-    type: types.GET_GENRE_LIST,
+    type: types.PEGA_LISTA_CATEGORIAS,
     payload: res.data,
   });
 };

@@ -1,4 +1,4 @@
-import { fetchpostdetails } from "../../../store/actions/moviesAction";
+import { fetchpostdetails } from "../../../store/actions/ProdutosAction";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -51,7 +51,7 @@ const DetailsWrapper = styled.div`
 `;
 
 const movieDetails = () => {
-  const { postdetails } = useSelector((state) => state.post);
+  const { postdetails } = useSelector((state) => state.produto);
 
   const router = useRouter();
 

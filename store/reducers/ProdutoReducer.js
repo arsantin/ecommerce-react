@@ -2,23 +2,23 @@ import * as types from "../types";
 
 const initialState = {
   movie: {},
-  filteredList: [],
+  listaDeProdutosFiltrados: [],
   chosenIds: [],
   novoarray: [],
   filtered: [],
   postdetails: [],
-  posts: [],
-  post: {},
+  produtos: [],
+  produto: {},
   loading: false,
   error: null,
 };
 
-export const postReducer = (state = initialState, action) => {
+export const ProdutoReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.GET_POSTS:
       return {
         ...state,
-        posts: action.payload,
+        produtos: action.payload,
         loading: false,
         error: null,
       };
@@ -31,26 +31,26 @@ export const postReducer = (state = initialState, action) => {
       };
     case types.FILTERED_LIST:
       let idAlreadyExists =
-        state.filteredList.findIndex((i) => i.id === action.payload.id) > -1;
+        state.listaDeProdutosFiltrados.findIndex((i) => i.id === action.payload.id) > -1;
 
-      let filteredList = state.filteredList.slice();
+      let listaDeProdutosFiltrados = state.listaDeProdutosFiltrados.slice();
 
       if (idAlreadyExists) {
-        filteredList = filteredList.filter((obj) => obj != action.payload.id);
+        listaDeProdutosFiltrados = listaDeProdutosFiltrados.filter((obj) => obj != action.payload.id);
       } else {
-        const ok = filteredList.push(action.payload);
+        const ok = listaDeProdutosFiltrados.push(action.payload);
       }
 
       return {
         ...state,
-        filteredList: filteredList,
+        listaDeProdutosFiltrados: listaDeProdutosFiltrados,
         loading: false,
         error: null,
       };
     case types.FILTERED_LIST_REMOVE:
       let idExists =
-        state.filteredList.findIndex((i) => i.id === action.payload.id) > -1;
-      let filteredL = state.filteredList.slice();
+        state.listaDeProdutosFiltrados.findIndex((i) => i.id === action.payload.id) > -1;
+      let filteredL = state.listaDeProdutosFiltrados.slice();
 
       if (idExists) {
         const filteredIndex = filteredL.findIndex(
@@ -62,14 +62,14 @@ export const postReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        filteredList: filteredL,
+        listaDeProdutosFiltrados: filteredL,
         loading: false,
         error: null,
       };
     case types.CLEAN_FILTER:
       return {
         ...state,
-        filteredList: [],
+        listaDeProdutosFiltrados: [],
         loading: false,
         error: null,
       };

@@ -38,17 +38,17 @@ const MeusFiltros = (props) => {
     <Suspense fallback={renderLoader()}>
       <MeusFiltrosWrapper>
         <h6>MEUS FILTROS</h6>
-        {props.filteredList &&
-          props.filteredList.map((cats) => {
+        {props.listaDeProdutosFiltrados &&
+          props.listaDeProdutosFiltrados.map((cats) => {
             return (
               <CategoriasEscolhidas
                 className="wrap-cat"
                 cats={cats}
-                removeFromChoices={props.removeFromChoices}
+                removeDasCategoriasEscolhidas={props.removeDasCategoriasEscolhidas}
               />
             );
           })}
-        <button onClick={props.cleanAllFilter}>LIMPAR FILTROS</button>
+        <button onClick={props.resetaFiltroCategoria}>LIMPAR FILTROS</button>
       </MeusFiltrosWrapper>
     </Suspense>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Image from 'next/image'
+import Link from 'next/link'
 
 const MainCard = styled.div`
   margin: 20px;
@@ -35,21 +36,38 @@ const MainCard = styled.div`
     right: 20px;
     top: 0px;
   }
+  input{
+    width: 30px;
+    text-align: center;
+    margin: 5px;
+  }
 `;
 
 const Card = (props) => {
+
+  function adicionarAoCarrinho(e){
+    console.log(e);
+  }
+
   return (
     <MainCard>      
-        <div className="card_pic" key={props.filme.id}>
+        <div className="card_pic" key={props.produto.id}>
         <Image
-            src={`https://image.tmdb.org//t//p//w1280//${props.filme.poster_path}`}
+            src={`https://image.tmdb.org//t//p//w1280//${props.produto.poster_path}`}
             alt=""
             layout="fixed"
             width={200}
             height={300}
           />
-          <h2 className="average">{props.filme.vote_average}</h2>
-          <h3>{props.filme.title}</h3>
+          <h2 className="average">{props.produto.vote_average}</h2>
+          <Link href="/produto/[id]" as={`/produto/${props.produto.id}`}>
+            <a>
+          <h3>{props.produto.title}</h3></a></Link>
+          <p><label>Valor:</label>R$54,90</p>
+          <button>-</button>
+          <input type="text" value="1" maxLength="3" width="90"/><button>+</button>
+          <hr/>          
+          <button onClick={adicionarAoCarrinho}>ADICIONAR AO CARRINHO</button>
         </div>       
         
     </MainCard>

@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { genreReducer } from "./genreReducer";
-import { postReducer } from "./postReducer";
+import { CategoriaReducer } from "./CategoriaReducer";
+import { ProdutoReducer } from "./ProdutoReducer";
 import { persistReducer } from "redux-persist";
 import storage from 'redux-persist/lib/storage'
 
@@ -8,12 +8,12 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['post']
+  whitelist: ['produto']
 }
 
 const reducer = combineReducers({
-  genre: genreReducer,
-  post: postReducer,
+  categoria: CategoriaReducer,
+  produto: ProdutoReducer,
 });
 
 export default persistReducer(persistConfig, reducer);

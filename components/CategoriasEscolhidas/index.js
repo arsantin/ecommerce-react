@@ -32,7 +32,7 @@ const CategoriasEscolhidas = (props) => {
         <button
           className="chooseds"
           key={props.id}
-          onClick={props.removeFromChoices}
+          onClick={props.removeDasCategoriasEscolhidas}
           value={props.cats.id}
         >
           {props.cats.name}

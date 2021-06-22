@@ -1,14 +1,11 @@
 import Head from "next/head";
 import React, { lazy, Suspense } from "react";
+import Header from "./Header";
 
-const Footer = lazy(() => import("./Footer"));
-const Header = lazy(() => import("./Header"));
-
-const renderLoader = () => <p>Carregando...</p>;
 
 const Layout = ({ children, title = "PromobitFlix" }) => {
   return (
-    <Suspense fallback={renderLoader()}>
+    <>
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
@@ -19,7 +16,7 @@ const Layout = ({ children, title = "PromobitFlix" }) => {
       </Head>
       <Header />
       {children}      
-    </Suspense>
+    </>
   );
 };
 

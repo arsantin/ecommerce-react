@@ -1,8 +1,29 @@
-const Carrinho = () => {
-  return <div>
-    <div>Carrinho</div>
-    <div>Total: R$1.000,00</div>
-  </div>
-}
+const Carrinho = (props) => {
+  console.log("caaaaaaaaar", props.carrinho)
+  return (
+    <div>
+      <h4>Carrinho:</h4>
+      <div>
+            {props.carrinho.map((titles) => {
+              return (
+                <div key={titles.id}>
+                  <div key={titles.id}>{titles.title}</div>
+                </div>
+              );
+            })}
+          </div>
+          <div>
+            {props.carrinho &&
+              props.carrinho.map((valor) => {
+                return (
+                  <div key={valor.id}>
+                    <div key={valor.id}>{valor.vote_average}</div>
+                  </div>
+                );
+              })}
+          </div>  
+    </div>     
+  );
+};
 
-export default Carrinho
+export default Carrinho;

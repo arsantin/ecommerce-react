@@ -6,16 +6,16 @@ import {
   fetchProdutos,
   enviaParaCategoriasFiltradas,
   removeCategoriaFiltrada,
-  resetaFiltros,
+  resetaFiltros,  
 } from "../store/actions/ProdutosAction";
 import { listaCategorias } from "../store/actions/CategoriasAction";
 import IndexWrapper from "./styles";
 import Carrinho from '../components/Carrinho'
-const Pagination = lazy(() => import("../components/Pagination"));
-const Produtos = lazy(() => import("../components/Produtos"));
+import Produtos from "../components/Produtos";
+import Layout from "../components/Layout";
 const MeusFiltros = lazy(() => import("../components/MeusFiltros"));
 const Categorias = lazy(() => import("../components/Categorias"));
-const Layout = lazy(() => import("../components/Layout"));
+
 const Filtrados = lazy(() => import("../components/Filtrados"));
 const renderLoader = () => <p>Carregando...</p>;
 
@@ -25,6 +25,9 @@ const Index = () => {
   const [filmesFiltrados, setfilmesFiltrados] = useState([]);
   const { produtos, listaDeProdutosFiltrados } = useSelector(
     (state) => state.produto
+  );
+  const { carrinho } = useSelector(
+    (state) => state.carrinho
   );
   const { categorias } = useSelector((state) => state.categoria);
 
@@ -93,7 +96,7 @@ const Index = () => {
             <div onClick={fechaMenu} className="fechar">
               Fechar X
             </div>
-            <Carrinho/>
+            {carrinho.length > 0 && <Carrinho carrinho={carrinho}/>}            
             {listaDeProdutosFiltrados.length > 0 && (
               <MeusFiltros
                 listaDeProdutosFiltrados={listaDeProdutosFiltrados}
@@ -108,20 +111,12 @@ const Index = () => {
               abreMenu={abreMenu}
             />
           </div>
-          <div class="content">
+          <div className="content">
             {filmesFiltrados.length > 0 ? (
               <Filtrados filmesFiltrados={filmesFiltrados} />
             ) : (
               <>
-                {produtos.results && (
-                  <Pagination
-                    data={produtos.results}
-                    RenderComponent={Produtos}
-                    title="Catálogo"
-                    pageLimit={4}
-                    dataLimit={6}
-                  />
-                )}
+                {produtos.results && <Produtos produtos={produtos.results} />}
               </>
             )}
           </div>

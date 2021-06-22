@@ -43,20 +43,24 @@ export const removeCategoriaFiltrada = (id, name) => async (dispatch) => {
   const obj= {
     id: id,
     name: name
-  }
- 
-  
+  }  
   dispatch({
     type: types.FILTERED_LIST_REMOVE,
     payload: obj,
-  });
-  
+  });  
 };
 
 export const resetaFiltros = () => async (dispatch) => {
   dispatch({
     type: types.CLEAN_FILTER
-  });
-  
+  });  
 };
+
+export const adicionarAoCarrinho = (item) => async (dispatch) =>{
+  console.log("item função", item);
+  dispatch({
+    type: types.ADICIONA_AO_CARRINHO,
+    payload: item
+  });
+}
 

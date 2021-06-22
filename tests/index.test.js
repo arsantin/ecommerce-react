@@ -12,5 +12,5 @@
    ReactDOM.render(<Home/>, root);
 
   expect(root.querySelector("h5").textContent).toBe("home");
-  console.log("o teste rodou");
+
 })

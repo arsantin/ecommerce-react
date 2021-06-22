@@ -1,11 +1,5 @@
-import Link from "next/link";
 import styled from "styled-components";
-import React, { lazy, Suspense } from "react";
-
-const Card = lazy(() => import("../Card"));
-const CategoriasEscolhidas = lazy(() => import("../CategoriasEscolhidas"));
-
-const renderLoader = () => <p>Carregando...</p>;
+import CategoriasEscolhidas from "../CategoriasEscolhidas";
 
 const MeusFiltrosWrapper = styled.div`
   background-color: #131313;
@@ -35,13 +29,14 @@ const MeusFiltrosWrapper = styled.div`
 
 const MeusFiltros = (props) => {
   return (
-    <Suspense fallback={renderLoader()}>
+    
       <MeusFiltrosWrapper>
         <h6>MEUS FILTROS</h6>
         {props.listaDeProdutosFiltrados &&
           props.listaDeProdutosFiltrados.map((cats) => {
             return (
               <CategoriasEscolhidas
+                key={cats.id}
                 className="wrap-cat"
                 cats={cats}
                 removeDasCategoriasEscolhidas={props.removeDasCategoriasEscolhidas}
@@ -50,7 +45,7 @@ const MeusFiltros = (props) => {
           })}
         <button onClick={props.resetaFiltroCategoria}>LIMPAR FILTROS</button>
       </MeusFiltrosWrapper>
-    </Suspense>
+    
   );
 };
 

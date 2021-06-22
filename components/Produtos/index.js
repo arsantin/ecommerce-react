@@ -1,10 +1,5 @@
-import Link from "next/link";
 import styled from "styled-components";
-import React, { lazy, Suspense } from "react";
-
-const Card = lazy(() => import("../Card"));
-
-const renderLoader = () => <p>Carregando...</p>;
+import Card from "../Card";
 
 const ProdutosWrapper = styled.div`
   display: flex;
@@ -15,14 +10,13 @@ const ProdutosWrapper = styled.div`
 `;
 
 const Produtos = (props) => {
-  return (
-    <Suspense fallback={renderLoader()}>
-      <ProdutosWrapper>
-        {props.data && (          
-              <Card produto={props.data} />            
-        )}
-      </ProdutosWrapper>
-    </Suspense>
+
+  return (    
+      <ProdutosWrapper>       
+        {props.produtos && props.produtos.map(produto => {
+          return <Card produto={produto} key={produto.id}/>  
+        })}
+      </ProdutosWrapper>    
   );
 };
 

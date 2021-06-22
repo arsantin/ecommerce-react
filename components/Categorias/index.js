@@ -28,15 +28,15 @@ const Categorias = (props) => {
     <CategoriasWrapper>
       <h5>Categorias</h5>      
       {props.categorias.genres &&
-        props.categorias.genres.map((genre) => {
+        props.categorias.genres.map((categoria) => {
           return (
             <button
-              key={genre.id}
+              key={categoria.id}
               className="red"
               onClick={props.adicionaCategoriaAoFiltro}
-              value={genre.id}
+              value={categoria.id}
             >
-              {genre.name}
+              {categoria.name}
             </button>
           );
         })}

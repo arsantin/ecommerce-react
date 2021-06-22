@@ -33,13 +33,12 @@ const Filtrados = (props) => {
         <span>
           {props.filmesFiltrados &&
             JSON.stringify(props.filmesFiltrados.length)}
-        </span>{" "}
-        filme(s).
+        </span>
       </div>
       {props.filmesFiltrados &&
         props.filmesFiltrados.map((produto) => {
           return (
-          <Card produto={produto} />            
+          <Card produto={produto} key={produto.id}/>            
           );
         })}
     </FiltradosWrapper>

@@ -3,9 +3,6 @@ import * as types from "../types";
 const initialState = {
   movie: {},
   listaDeProdutosFiltrados: [],
-  chosenIds: [],
-  novoarray: [],
-  filtered: [],
   postdetails: [],
   produtos: [],
   produto: {},
@@ -13,15 +10,15 @@ const initialState = {
   error: null,
 };
 
-export const ProdutoReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.GET_POSTS:
-      return {
-        ...state,
-        produtos: action.payload,
-        loading: false,
-        error: null,
-      };
+export const ProdutoReducer = (state = initialState, action) => {  
+  switch (action.type) {    
+      case types.GET_POSTS:
+        return {
+          ...state,
+          produtos: action.payload,
+          loading: false,
+          error: null,
+        };
     case types.GET_POSTS_DETAILS:
       return {
         ...state,

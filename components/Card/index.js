@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Image from 'next/image'
 import Link from 'next/link'
+import { useDispatch } from "react-redux";
+import { adicionarAoCarrinho } from "../../store/actions/CarrinhoAction";
+
 
 const MainCard = styled.div`
   margin: 20px;
@@ -43,10 +46,12 @@ const MainCard = styled.div`
   }
 `;
 
-const Card = (props) => {
+const Card = (props) => {    
+  const dispatch = useDispatch();
 
-  function adicionarAoCarrinho(e){
-    console.log(e);
+  function addCart(){   
+    const item = props.produto
+    dispatch(adicionarAoCarrinho(item))
   }
 
   return (
@@ -65,11 +70,10 @@ const Card = (props) => {
           <h3>{props.produto.title}</h3></a></Link>
           <p><label>Valor:</label>R$54,90</p>
           <button>-</button>
-          <input type="text" value="1" maxLength="3" width="90"/><button>+</button>
+          <input type="text" placeholder="1" maxLength="3" width="90"/><button>+</button>
           <hr/>          
-          <button onClick={adicionarAoCarrinho}>ADICIONAR AO CARRINHO</button>
-        </div>       
-        
+          <button onClick={addCart} value={props.produto}>ADICIONAR AO CARRINHO</button>
+        </div>               
     </MainCard>
   );
 };

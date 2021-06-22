@@ -1,20 +1,19 @@
 const Carrinho = (props) => {
-  console.log("caaaaaaaaar", props.carrinho)
+  console.log("caaaaaaaaar", props.carrinho);
   return (
-    <div>
-      <h4>Carrinho:</h4>
-      <div>
-            {props.carrinho.map((titles) => {
-              return (<div key={titles.id}>{titles.title}</div>);
-            })}
+    <div style={{ display: "flex", flexWrap: "wrap", fontSize: "10px" }}>
+      <h4 style={{ flexBasis: "100%" }}>Carrinho:</h4>
+      {props.carrinho.map((produto) => {
+        return (
+          <div style={{ display: "flex", flexBasis: "100%", flexWrap: 'nowrap' }}>
+            <div key={produto.id} style={{ flexBasis: "70%" }}>{produto.title}</div>
+            <div key={produto.id} style={{ flexBasis: "30%", whiteSpace: 'nowrap' }}> {produto.vote_count}X {produto.qt} = R${produto.vote_count * produto.qt} 
+            </div>
           </div>
-          <div>
-            {props.carrinho &&
-              props.carrinho.map((valor) => {
-                return (<div key={valor.id}>{valor.vote_average}</div>);
-              })}
-          </div>  
-    </div>     
+        );
+      })}
+      <div><strong>TOTAL: </strong></div>
+    </div>
   );
 };
 

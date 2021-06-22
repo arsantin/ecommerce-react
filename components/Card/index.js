@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,10 +17,7 @@ const MainCard = styled.div`
     text-decoration: none;
     color: orange;
   }
-  &:hover {
-    background: #353535;
-    cursor: pointer;
-  }
+  
   img {
     max-width: 250px;
     width: 100%;
@@ -44,16 +41,32 @@ const MainCard = styled.div`
     text-align: center;
     margin: 5px;
   }
+  button:hover{
+    cursor: pointer;
+  }
+  .envia{
+    border: none;
+    background-color: #440b3a;
+    padding: 10px;
+    color: #ebecd0;
+
+  }
 `;
 
 const Card = (props) => {    
   const dispatch = useDispatch();
 
-  function addCart(){   
-    const item = props.produto
-    dispatch(adicionarAoCarrinho(item))
-  }
+  const[quantidade, setQuantidade] = useState(1);
+  const[valor, setValor] = useState(60.00);
 
+  function incluiNoCarrinho(){   
+    const item = props.produto;
+    const qt = quantidade;
+    const obj = {...item, qt}
+    console.log("obj", obj);
+    dispatch(adicionarAoCarrinho(obj))
+  }
+ 
   return (
     <MainCard>      
         <div className="card_pic" key={props.produto.id}>
@@ -68,11 +81,14 @@ const Card = (props) => {
           <Link href="/produto/[id]" as={`/produto/${props.produto.id}`}>
             <a>
           <h3>{props.produto.title}</h3></a></Link>
-          <p><label>Valor:</label>R$54,90</p>
-          <button>-</button>
-          <input type="text" placeholder="1" maxLength="3" width="90"/><button>+</button>
-          <hr/>          
-          <button onClick={addCart} value={props.produto}>ADICIONAR AO CARRINHO</button>
+          <p><label>Valor:</label>R${valor}</p>
+          {quantidade > 1 && <button onClick={()=> setQuantidade(quantidade - 1)}>-</button>}
+          <input type="text" placeholder={quantidade} maxLength="3" width="90"/><button onClick={()=> setQuantidade(quantidade + 1)}>+</button>
+          <hr/>
+          {quantidade > 1 && <div>Total itens: ({quantidade}) - {quantidade * valor} reais</div>}
+          <hr/>
+          {quantidade > 0 && <button className="envia" onClick={incluiNoCarrinho} value={props.produto}>ADICIONAR AO CARRINHO</button>}          
+          
         </div>               
     </MainCard>
   );

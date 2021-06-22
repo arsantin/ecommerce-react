@@ -5,21 +5,13 @@ const Carrinho = (props) => {
       <h4>Carrinho:</h4>
       <div>
             {props.carrinho.map((titles) => {
-              return (
-                <div key={titles.id}>
-                  <div key={titles.id}>{titles.title}</div>
-                </div>
-              );
+              return (<div key={titles.id}>{titles.title}</div>);
             })}
           </div>
           <div>
             {props.carrinho &&
               props.carrinho.map((valor) => {
-                return (
-                  <div key={valor.id}>
-                    <div key={valor.id}>{valor.vote_average}</div>
-                  </div>
-                );
+                return (<div key={valor.id}>{valor.vote_average}</div>);
               })}
           </div>  
     </div>     

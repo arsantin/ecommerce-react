@@ -5,9 +5,8 @@ import Link from 'next/link'
 import { useDispatch } from "react-redux";
 import { adicionarAoCarrinho } from "../../store/actions/CarrinhoAction";
 
-
 const MainCard = styled.div`
-  margin: 20px;
+  margin: 5px;
   padding: 20px;
   background: #131313;
   max-width: 200px;
@@ -44,13 +43,13 @@ const MainCard = styled.div`
   button:hover{
     cursor: pointer;
   }
-  .envia{
+  .ativo{
     border: none;
     background-color: #440b3a;
     padding: 10px;
     color: #ebecd0;
 
-  }
+  }  
 `;
 
 const Card = (props) => {    
@@ -58,12 +57,13 @@ const Card = (props) => {
 
   const[quantidade, setQuantidade] = useState(1);
   const[valor, setValor] = useState(60.00);
+  const [ativado, setAtivado] = useState(false)
 
-  function incluiNoCarrinho(){   
+  function incluiNoCarrinho(){
     const item = props.produto;
     const qt = quantidade;
-    const obj = {...item, qt}
-    console.log("obj", obj);
+    const obj = {...item, qt, valor}  
+    setAtivado(true);  
     dispatch(adicionarAoCarrinho(obj))
   }
  
@@ -71,23 +71,25 @@ const Card = (props) => {
     <MainCard>      
         <div className="card_pic" key={props.produto.id}>
         <Image
-            src={`https://image.tmdb.org//t//p//w1280//${props.produto.poster_path}`}
+            src={"https://baconmockup.com/200/120"}
             alt=""
             layout="fixed"
             width={200}
-            height={300}
+            height={120}
           />
           <h2 className="average">{props.produto.vote_average}</h2>
-          <Link href="/produto/[id]" as={`/produto/${props.produto.id}`}>
+          <Link href="/produtos/[id]" as={`/produtos/${props.produto.id}`}>
             <a>
           <h3>{props.produto.title}</h3></a></Link>
-          <p><label>Valor:</label>R${valor}</p>
-          {quantidade > 1 && <button onClick={()=> setQuantidade(quantidade - 1)}>-</button>}
-          <input type="text" placeholder={quantidade} maxLength="3" width="90"/><button onClick={()=> setQuantidade(quantidade + 1)}>+</button>
+          <p><label>Valor:</label>R${props.produto.vote_count}</p>
+          {quantidade > 1 && <button onClick={()=> setQuantidade(quantidade - 1)}>-</button>}          
+          <div>Quero {quantidade} desse!!!</div>
+                    
+          <button onClick={()=> setQuantidade(quantidade + 1)}>+</button>
           <hr/>
           {quantidade > 1 && <div>Total itens: ({quantidade}) - {quantidade * valor} reais</div>}
           <hr/>
-          {quantidade > 0 && <button className="envia" onClick={incluiNoCarrinho} value={props.produto}>ADICIONAR AO CARRINHO</button>}          
+          {quantidade > 0 && <button className={ativado ? "inativo" : "ativo"} disabled={ativado} onClick={incluiNoCarrinho} value={props.produto}>{ativado ? "PRODUTO NO CARRINHO" : "ADICIONAR AO CARRINHO"}</button>}          
           
         </div>               
     </MainCard>

@@ -2,6 +2,7 @@ import { fetchpostdetails } from "../../../store/actions/ProdutosAction";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { RootState } from "../../../store/store";
 import styled from "styled-components";
 import Head from "next/head";
 import Image from "next/image";
@@ -51,7 +52,7 @@ const DetailsWrapper = styled.div`
 `;
 
 const movieDetails = () => {
-  const { postdetails } = useSelector((state) => state.produto);
+  const { postdetails } = useSelector((state: RootState) => state.produto);
 
   const router = useRouter();
 
@@ -90,8 +91,8 @@ const movieDetails = () => {
             </p>
             
               {postdetails.genres &&
-                postdetails.genres.map((genre) => {
-                  return <div key={genre.id}>{genre.name}</div>;
+                postdetails.genres.map((categoria) => {
+                  return <div key={categoria.id}>{categoria.name}</div>;
                 })}
            
           </div>

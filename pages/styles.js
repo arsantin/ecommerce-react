@@ -11,12 +11,12 @@ const IndexWrapper = styled.div`
     display: block;
     opacity: 0.98;
     padding: 20px;
-    flex-basis: 20%;
+    flex-basis: 35%;
     position: fixed;
     z-index: 200;
     top: 0px;
     left: 0px;
-    width: 200px;
+    width: 500px;
     background: #000000;
     height: 100%;
     font-size: 14px;
@@ -34,7 +34,7 @@ const IndexWrapper = styled.div`
     }
   }
   .content {
-    flex-basis: 80%;
+    flex-basis: 65%;
     padding-left: 220px;
     display: flex;
     justify-content: center;

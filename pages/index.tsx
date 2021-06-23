@@ -13,6 +13,7 @@ import IndexWrapper from "./styles";
 import Carrinho from '../components/Carrinho'
 import Produtos from "../components/Produtos";
 import Layout from "../components/Layout";
+import { RootState } from '../store/store'
 const MeusFiltros = lazy(() => import("../components/MeusFiltros"));
 const Categorias = lazy(() => import("../components/Categorias"));
 
@@ -24,12 +25,12 @@ const Index = () => {
   const dispatch = useDispatch();
   const [filmesFiltrados, setfilmesFiltrados] = useState([]);
   const { produtos, listaDeProdutosFiltrados } = useSelector(
-    (state) => state.produto
+    (state:RootState) => state.produto
   );
   const { carrinho } = useSelector(
-    (state) => state.carrinho
+    (state:RootState) => state.carrinho
   );
-  const { categorias } = useSelector((state) => state.categoria);
+  const { categorias } = useSelector((state:RootState) => state.categoria);
 
   useEffect(() => {
     dispatch(fetchProdutos());

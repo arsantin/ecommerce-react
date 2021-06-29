@@ -76,7 +76,7 @@ const movieDetails = () => {
         <DetailsWrapper>
           <div className="left">
             <Image
-              src={`https://image.tmdb.org//t//p//w1280//${postdetails.poster_path}`}
+              src={"https://baconmockup.com/200/120"}
               alt={postdetails.title}
               width={350}
               height={500}
@@ -98,6 +98,9 @@ const movieDetails = () => {
           </div>
           <Link href="/">
             <a className="back">voltar</a>
+          </Link>
+          <Link href="/produtos/[id]/editar" as={`/produtos/${postdetails.id}/editar`}>
+            <a>editar</a>
           </Link>
         </DetailsWrapper>
       </Layout>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Card from "../Card";
 
-const ProdutosWrapper = styled.div`
+const ProdutosDestaquesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   h1 {
@@ -9,15 +9,15 @@ const ProdutosWrapper = styled.div`
   }
 `;
 
-const Produtos = (props) => {
+const ProdutosDestaques = (props) => {
 
   return (    
-      <ProdutosWrapper>       
+      <ProdutosDestaquesWrapper>       
         {props.produtos && props.produtos.map(produto => {
           return <Card produto={produto} key={produto.id}/>  
         })}
-      </ProdutosWrapper>    
+      </ProdutosDestaquesWrapper>    
   );
 };
 
-export default Produtos;
+export default ProdutosDestaques;

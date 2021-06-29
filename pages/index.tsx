@@ -10,10 +10,10 @@ import {
 } from "../store/actions/ProdutosAction";
 import { listaCategorias } from "../store/actions/CategoriasAction";
 import IndexWrapper from "./styles";
-import Carrinho from '../components/Carrinho'
-import Produtos from "../components/Produtos";
+import Carrinho from '../components/Carrinho';
 import Layout from "../components/Layout";
 import { RootState } from '../store/store'
+import ProdutosDestaques from "../components/ProdutosDestaques";
 const MeusFiltros = lazy(() => import("../components/MeusFiltros"));
 const Categorias = lazy(() => import("../components/Categorias"));
 
@@ -117,7 +117,7 @@ const Index = () => {
               <Filtrados filmesFiltrados={filmesFiltrados} />
             ) : (
               <>
-                {produtos.results && <Produtos produtos={produtos.results} />}
+                {produtos.results && <ProdutosDestaques produtos={produtos.results} />}
               </>
             )}
           </div>

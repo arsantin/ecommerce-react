@@ -11,14 +11,17 @@ const HeaderWrapper = styled.div`
 const Header = () => {
   return(
     <HeaderWrapper>
-      <Link href="/"><a>
+      <nav>
+      <Link href="/"><a>Home</a></Link>
+      <Link href="/produtos"><a>Produtos</a></Link>
+        </nav>
      <Image            
             alt=""
             width={200}
             height={40}
             className="logo" 
             src="/img/logo.png"
-          /></a></Link>  
+          /> 
     </HeaderWrapper>
   )
 }

@@ -10,15 +10,15 @@ const initialState = {
   error: null,
 };
 
-export const ProdutoReducer = (state = initialState, action) => {  
-  switch (action.type) {    
-      case types.GET_POSTS:
-        return {
-          ...state,
-          produtos: action.payload,
-          loading: false,
-          error: null,
-        };
+export const ProdutoReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case types.GET_POSTS:
+      return {
+        ...state,
+        produtos: action.payload,
+        loading: false,
+        error: null,
+      };
     case types.GET_POSTS_DETAILS:
       return {
         ...state,
@@ -28,12 +28,16 @@ export const ProdutoReducer = (state = initialState, action) => {
       };
     case types.FILTERED_LIST:
       let idAlreadyExists =
-        state.listaDeProdutosFiltrados.findIndex((i) => i.id === action.payload.id) > -1;
+        state.listaDeProdutosFiltrados.findIndex(
+          (i) => i.id === action.payload.id
+        ) > -1;
 
       let listaDeProdutosFiltrados = state.listaDeProdutosFiltrados.slice();
 
       if (idAlreadyExists) {
-        listaDeProdutosFiltrados = listaDeProdutosFiltrados.filter((obj) => obj != action.payload.id);
+        listaDeProdutosFiltrados = listaDeProdutosFiltrados.filter(
+          (obj) => obj != action.payload.id
+        );
       } else {
         const ok = listaDeProdutosFiltrados.push(action.payload);
       }
@@ -46,7 +50,9 @@ export const ProdutoReducer = (state = initialState, action) => {
       };
     case types.FILTERED_LIST_REMOVE:
       let idExists =
-        state.listaDeProdutosFiltrados.findIndex((i) => i.id === action.payload.id) > -1;
+        state.listaDeProdutosFiltrados.findIndex(
+          (i) => i.id === action.payload.id
+        ) > -1;
       let filteredL = state.listaDeProdutosFiltrados.slice();
 
       if (idExists) {
@@ -70,6 +76,15 @@ export const ProdutoReducer = (state = initialState, action) => {
         loading: false,
         error: null,
       };
+    case types.ATUALIZA_PRODUTO:
+      const achaId = state.produtos.filter((prod) => prod.id === action.payload.id).length
+      console.log(achaId);
+      return {
+        ...state,
+        title: action.payload,
+        loading: false,
+        error: null,
+      };      
     default:
       return state;
   }

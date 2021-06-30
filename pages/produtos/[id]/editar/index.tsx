@@ -18,14 +18,16 @@ const Editar = () => {
     dispatch(fetchpostdetails(id));
   }, []);
 
-  function updateProduto(data) {    
+  function updateProduto(data) {  
+    console.log("data", data);   
     dispatch(atualizaProduto(data));
   }
 
   return (
     <Layout>    
     <form onSubmit={handleSubmit(updateProduto)}>
-      {JSON.stringify(postdetails)}     
+      {JSON.stringify(postdetails)}    
+      <input defaultValue={postdetails.id} {...register("id")} />      
       <input defaultValue={postdetails.title} {...register("title")} />      
       <input type="submit" />
     </form>

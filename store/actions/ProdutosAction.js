@@ -64,11 +64,13 @@ export const adicionarAoCarrinho = (item) => async (dispatch) =>{
   });
 }
 
-export const atualizaProduto = (dados) => async (dispatch) =>{
-  console.log("item função", dados);
+export const atualizaProduto = (data) => async (dispatch) =>{
+  
+  
+  console.log("obj", data);
   dispatch({
     type: types.ATUALIZA_PRODUTO,
-    payload: dados
+    payload: {id: data.id, title: data.title}
   });
 }
 

@@ -20,7 +20,7 @@ const Header = () => {
             width={200}
             height={40}
             className="logo" 
-            src="/img/logo.png"
+            src="https://w7.pngwing.com/pngs/42/185/png-transparent-fake-news-bank-account-money-balance-others-text-trademark-logo.png"
           /> 
     </HeaderWrapper>
   )

@@ -76,12 +76,12 @@ export const ProdutoReducer = (state = initialState, action) => {
         loading: false,
         error: null,
       };
-    case types.ATUALIZA_PRODUTO:
-      const achaId = state.produtos.filter((prod) => prod.id === action.payload.id).length
-      console.log(achaId);
+    case types.ATUALIZA_PRODUTO:      
+      console.log("payload", action.payload)
+      const obj = action.payload;
       return {
         ...state,
-        title: action.payload,
+        produtos: {results:[...state.results, action.payload]},        
         loading: false,
         error: null,
       };      

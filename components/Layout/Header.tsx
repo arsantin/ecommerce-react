@@ -15,7 +15,7 @@ const Header = () => {
       <Link href="/"><a>Home</a></Link>
       <Link href="/produtos"><a>Produtos</a></Link>
         </nav>
-     <Image            
+     <img            
             alt=""
             width={200}
             height={40}

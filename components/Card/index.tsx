@@ -70,12 +70,9 @@ const Card = (props) => {
   return (
     <MainCard>      
         <div className="card_pic" key={props.produto.id}>
-        <Image
+        <img
             src={"https://baconmockup.com/200/120"}
             alt=""
-            layout="fixed"
-            width={200}
-            height={120}
           />
           <h2 className="average">{props.produto.vote_average}</h2>
           <Link href="/produtos/[id]" as={`/produtos/${props.produto.id}`}>

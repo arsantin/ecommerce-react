@@ -75,7 +75,7 @@ const movieDetails = () => {
         </Head>
         <DetailsWrapper>
           <div className="left">
-            <Image
+            <img
               src={"https://baconmockup.com/200/120"}
               alt={postdetails.title}
               width={350}

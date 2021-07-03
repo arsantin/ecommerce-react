@@ -68,17 +68,16 @@ const Card = (props) => {
   }
  
   return (
-    <MainCard>      
+    <MainCard>  
+     
         <div className="card_pic" key={props.produto.id}>
         <img
-            src={"https://baconmockup.com/200/120"}
+            src={props.produto.fotos[0]}
             alt=""
-          />
-          <h2 className="average">{props.produto.vote_average}</h2>
-          <Link href="/produtos/[id]" as={`/produtos/${props.produto.id}`}>
-            <a>
-          <h3>{props.produto.title}</h3></a></Link>
-          <p><label>Valor:</label>R${props.produto.vote_count}</p>
+          />          
+          <Link href="/produtos/[id]" as={`/produtos/${props.produto._id}`}>
+            <a>{props.produto.nome}</a></Link>
+          
           {quantidade > 1 && <button onClick={()=> setQuantidade(quantidade - 1)}>-</button>}          
           <div>Quero {quantidade} desse!!!</div>
                     

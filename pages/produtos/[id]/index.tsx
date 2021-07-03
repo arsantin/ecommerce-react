@@ -65,41 +65,35 @@ const movieDetails = () => {
 
   return (
     <Suspense fallback={renderLoader()}>
-      <Layout title={postdetails.title}>
+      <Layout title={postdetails[0].nome}>
         <Head>
-          <meta name={postdetails.title} content={postdetails.overview} />
-          <meta property="og:title" content={postdetails.overview} />
-          <meta property="og:description" content={postdetails.overview} />
+          <meta name={postdetails[0].title} content={postdetails[0].nome} />
+          <meta property="og:title" content={postdetails[0].nome} />
+          <meta property="og:description" content={postdetails[0].nome} />
           <meta property="og:url" content="https://urldeploy.com/" />
           <meta property="og:type" content="website"></meta>
         </Head>
         <DetailsWrapper>
           <div className="left">
-            <img
-              src={"https://baconmockup.com/200/120"}
-              alt={postdetails.title}
-              width={350}
-              height={500}
+            <Image
+              src={`https://guiadeitapoa.com.br/assets/img/${postdetails[0].avatar}`}
+              alt={postdetails[0]._id}
+              width={220}
+              height={220}
               className="poster"
             />
           </div>
           <div className="right">
-            <h1>{postdetails.original_title}</h1>
-            <p>{postdetails.overview}</p>
-            <p>
-              <strong>Categorias:</strong>
-            </p>
+            <h1>{postdetails[0].original_title}</h1>
+            <p>{postdetails[0].nome}</p>
+           
             
-              {postdetails.genres &&
-                postdetails.genres.map((categoria) => {
-                  return <div key={categoria.id}>{categoria.name}</div>;
-                })}
            
           </div>
           <Link href="/">
             <a className="back">voltar</a>
           </Link>
-          <Link href="/produtos/[id]/editar" as={`/produtos/${postdetails.id}/editar`}>
+          <Link href="/produtos/[id]/editar" as={`/produtos/${postdetails[0].id}/editar`}>
             <a>editar</a>
           </Link>
         </DetailsWrapper>

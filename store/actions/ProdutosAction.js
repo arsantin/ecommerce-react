@@ -1,38 +1,24 @@
 import * as types from "../types";
 import axios from "axios";
 
-export const fetchProdutos = () => async () => {
-getServerSideProps = () => async (dispatch) => { 
-
-  const res = await axios.get(
-    "https://api.themoviedb.org/3/movie/popular?api_key=1cafedf2a856620e3b3fa86798661fe8&page=1"
-  );
-
-  console.log("res", res)
+export const fetchProdutos = (comercio) => async (dispatch) => {  
   
   dispatch({
     type: types.GET_POSTS,
-    payload: res.data,
+    payload: comercio,
   });
-    return {
-      props: {
-        teste: res.data
-      }, // will be passed to the page component as props
-    }
+   
   }
-} 
+ 
 
 
 export const fetchpostdetails = (id) => async (dispatch) => {
   const idMovie = id.id;
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${idMovie}?api_key=1cafedf2a856620e3b3fa86798661fe8`
-  );
-  const show = await res.json();
+  
   
   dispatch({
     type: types.GET_POSTS_DETAILS,
-    payload: show,
+    payload: idMovie,
   });
 };
 

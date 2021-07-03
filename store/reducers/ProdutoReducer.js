@@ -19,10 +19,13 @@ export const ProdutoReducer = (state = initialState, action) => {
         loading: false,
         error: null,
       };
-    case types.GET_POSTS_DETAILS:
+    case types.GET_POSTS_DETAILS:    
+      const estado = state.produtos  
+      const filtro = estado.filter((cada)=> cada._id == action.payload);
+      
       return {
         ...state,
-        postdetails: action.payload,
+        postdetails: filtro,
         loading: false,
         error: null,
       };

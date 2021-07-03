@@ -1,7 +1,7 @@
 // next.config.js
 module.exports = {
   images: {
-    domains: ["baconmockup.com", "w7.pngwing.com"],
+    domains: ["guiadeitapoa.com.br"],
     assetPrefix: 'http://www.brutalweb.com.br/out',
   },
 }

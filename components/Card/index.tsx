@@ -72,10 +72,10 @@ const Card = (props) => {
      
         <div className="card_pic" key={props.produto.id}>
         <img
-            src={props.produto.fotos[0]}
+            src={props.produto.image}
             alt=""
           />          
-          <Link href="/produtos/[id]" as={`/produtos/${props.produto._id}`}>
+          <Link href="/produtos/[id]" as={`/produtos/${props.produto.id}`}>
             <a>{props.produto.nome}</a></Link>
           
           {quantidade > 1 && <button onClick={()=> setQuantidade(quantidade - 1)}>-</button>}          

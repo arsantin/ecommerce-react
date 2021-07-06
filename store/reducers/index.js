@@ -9,7 +9,7 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['produto', 'carrinho']
+  whitelist: ['carrinho']
 }
 
 const reducer = combineReducers({

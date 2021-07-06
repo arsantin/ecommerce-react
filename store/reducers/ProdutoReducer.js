@@ -1,9 +1,10 @@
+import { HYDRATE } from "next-redux-wrapper";
 import * as types from "../types";
 
 const initialState = {
   movie: {},
   listaDeProdutosFiltrados: [],
-  postdetails: [],
+  postdetails: {},
   produtos: [],
   produto: {},
   loading: false,
@@ -12,6 +13,8 @@ const initialState = {
 
 export const ProdutoReducer = (state = initialState, action) => {
   switch (action.type) {
+    case HYDRATE:
+      return { ...state, ...action.payload.settings };
     case types.GET_POSTS:
       return {
         ...state,
@@ -79,8 +82,7 @@ export const ProdutoReducer = (state = initialState, action) => {
         loading: false,
         error: null,
       };
-    case types.ATUALIZA_PRODUTO:      
-      console.log("payload", action.payload)
+    case types.ATUALIZA_PRODUTO:   
       const obj = action.payload;
       return {
         ...state,

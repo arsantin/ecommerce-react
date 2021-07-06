@@ -18,8 +18,7 @@ const Editar = () => {
     dispatch(fetchpostdetails(id));
   }, []);
 
-  function updateProduto(data) {  
-    console.log("data", data);   
+  function updateProduto(data) {     
     dispatch(atualizaProduto(data));
   }
 

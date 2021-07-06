@@ -51,13 +51,16 @@ const DetailsWrapper = styled.div`
     }
 `;
 
+
+
+
 const movieDetails = () => {
   const { postdetails } = useSelector((state: RootState) => state.produto);
-
-  const router = useRouter();
+const router = useRouter();
+const id = router.query;
 
   const dispatch = useDispatch();
-  const id = router.query;
+  
 
   useEffect(() => {
     dispatch(fetchpostdetails(id));
@@ -103,3 +106,14 @@ const movieDetails = () => {
 };
 
 export default movieDetails;
+
+export async function getServerSideProps(context) {  
+
+	const res = await fetch(`http://localhost:5000/1`)
+  const data = await res.json()  
+  return { 
+    props:{
+      comercio:  data
+    }
+  }
+}

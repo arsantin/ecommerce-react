@@ -7,7 +7,6 @@ const initialState = {
 };
 
 export const CarrinhoReducer = (state = initialState, action) => {  
-  console.log("car reducer")
   switch (action.type) {
     case types.ADICIONA_AO_CARRINHO:
       let carrinhoDeCompras = state.carrinho.slice();

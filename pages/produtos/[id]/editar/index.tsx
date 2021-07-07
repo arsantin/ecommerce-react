@@ -8,8 +8,7 @@ import Layout from '../../../../components/Layout/index'
 const Editar = () => {
   const { postdetails } = useSelector((state: RootState) => state.produto);
   const router = useRouter();
-  const id = router.query.id; 
-  console.log(id) 
+ 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   function updateProduto(data) {     
@@ -23,10 +22,10 @@ const Editar = () => {
         });
   }
 
-  function deletaProduto(id) {   
-    console.log("id delete", id)  
+  function deletaProduto() {  
+    const id = router.query.id;
     axios
-        .delete(`http://localhost:3000/api/comercio/1`)
+        .delete(`http://localhost:3000/api/comercio/${id}`)
         .then(function (response) {
           console.log(response);          
         })

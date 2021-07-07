@@ -3,7 +3,7 @@ import React, { lazy, Suspense } from "react";
 import Header from "./Header";
 
 
-const Layout = ({ children, title = "PromobitFlix" }) => {
+const Layout = ({ children, title = "Ecommerce" }) => {
   return (
     <>
       <Head>

@@ -22,10 +22,9 @@ export default function userHandler(req, res) {
       case "DELETE":
         console.log("delete", id)
         axios
-          .delete(`http://localhost:5000/1`)
+          .delete(`http://localhost:5000/${id}`)
           .then(function (response) {
             console.log(response);
-            res.status(200).json(response.data);
           })
           .catch(function (error) {
             console.log(error);

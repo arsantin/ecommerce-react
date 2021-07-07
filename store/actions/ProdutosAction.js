@@ -58,14 +58,7 @@ export const adicionarAoCarrinho = (item) => async (dispatch) =>{
 
 export const atualizaProduto = (data) => async (dispatch) =>{      
   console.log("obj na action", data)
-
-  axios.put('http://localhost:5000/', data)
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+  
 
 //  dispatch({
 //    type: types.ATUALIZA_PRODUTO,

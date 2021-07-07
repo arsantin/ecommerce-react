@@ -10,19 +10,7 @@ export default function userHandler(req, res) {
   switch (method) {
     case "GET":
       axios
-        .get("http://localhost:5000")
-        .then(function (response) {
-          console.log(response);
-          res.status(200).json(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-      break;
-    case "PUT":
-      axios
-        .put(`http://localhost:5000`, req.body)
+        .get(`http://localhost:5000/api/comercio/${query.id}`)
         .then(function (response) {
           console.log(response);
           res.status(200).json(response.data);
@@ -32,8 +20,9 @@ export default function userHandler(req, res) {
         });
       break;
       case "DELETE":
+        console.log("delete", id)
         axios
-          .delete(`http://localhost:5000/${id}`)
+          .delete(`http://localhost:5000/1`)
           .then(function (response) {
             console.log(response);
             res.status(200).json(response.data);

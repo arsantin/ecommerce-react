@@ -56,8 +56,8 @@ const DetailsWrapper = styled.div`
 
 const movieDetails = ({comercioDetails}) => {
   const { postdetails } = useSelector((state: RootState) => state.produto);
-const router = useRouter();
-const url = router.query;
+
+
 console.log()
   const dispatch = useDispatch();  
 
@@ -106,9 +106,9 @@ console.log()
 
 export default movieDetails;
 
-export async function getServerSideProps(context) {  
-
-	const res = await fetch(`http://localhost:5000/1`)
+export async function getServerSideProps({ query }) {  
+  const id = query.id;
+	const res = await fetch(`http://localhost:3000/api/comercio/${id}`)
   const data = await res.json()  
   return { 
     props:{

@@ -12,13 +12,10 @@ export const fetchProdutos = (comercio) => async (dispatch) => {
  
 
 
-export const fetchpostdetails = (id) => async (dispatch) => {
-  const idMovie = id.id;
-  
-  
+export const fetchpostdetails = (comercioDetails) => async (dispatch) => { 
   dispatch({
     type: types.GET_POSTS_DETAILS,
-    payload: idMovie,
+    payload: comercioDetails,
   });
 };
 
@@ -59,13 +56,20 @@ export const adicionarAoCarrinho = (item) => async (dispatch) =>{
   });
 }
 
-export const atualizaProduto = (data) => async (dispatch) =>{
-  
-  
-  console.log("obj", data);
-  dispatch({
-    type: types.ATUALIZA_PRODUTO,
-    payload: {id: data.id, title: data.title}
+export const atualizaProduto = (data) => async (dispatch) =>{      
+  console.log("obj na action", data)
+
+  axios.put('http://localhost:5000/', data)
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
   });
+
+//  dispatch({
+//    type: types.ATUALIZA_PRODUTO,
+//    payload: data
+//  });
 }
 

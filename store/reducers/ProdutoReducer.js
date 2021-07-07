@@ -23,12 +23,10 @@ export const ProdutoReducer = (state = initialState, action) => {
         error: null,
       };
     case types.GET_POSTS_DETAILS:    
-      const estado = state.produtos  
-      const filtro = estado.filter((cada)=> cada._id == action.payload);
-      
+      console.log(action.payload)   
       return {
         ...state,
-        postdetails: filtro,
+        postdetails: action.payload,
         loading: false,
         error: null,
       };
@@ -82,8 +80,8 @@ export const ProdutoReducer = (state = initialState, action) => {
         loading: false,
         error: null,
       };
-    case types.ATUALIZA_PRODUTO:   
-      const obj = action.payload;
+    case types.ATUALIZA_PRODUTO:      
+      console.log("obj na action", action.payload)
       return {
         ...state,
         produtos: {results:[...state.results, action.payload]},        

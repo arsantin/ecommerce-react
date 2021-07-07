@@ -54,41 +54,40 @@ const DetailsWrapper = styled.div`
 
 
 
-const movieDetails = () => {
+const movieDetails = ({comercioDetails}) => {
   const { postdetails } = useSelector((state: RootState) => state.produto);
 const router = useRouter();
-const id = router.query;
-
-  const dispatch = useDispatch();
-  
+const url = router.query;
+console.log()
+  const dispatch = useDispatch();  
 
   useEffect(() => {
-    dispatch(fetchpostdetails(id));
+    dispatch(fetchpostdetails(comercioDetails[0]));
   }, []);
 
   return (
     <Suspense fallback={renderLoader()}>
-      <Layout title={postdetails[0].nome}>
+      <Layout title={postdetails.nome}>
         <Head>
-          <meta name={postdetails[0].title} content={postdetails[0].nome} />
-          <meta property="og:title" content={postdetails[0].nome} />
-          <meta property="og:description" content={postdetails[0].nome} />
+          <meta name={postdetails.title} content={postdetails.nome} />
+          <meta property="og:title" content={postdetails.nome} />
+          <meta property="og:description" content={postdetails.nome} />
           <meta property="og:url" content="https://urldeploy.com/" />
           <meta property="og:type" content="website"></meta>
         </Head>
         <DetailsWrapper>
           <div className="left">
-            <Image
-              src={`https://guiadeitapoa.com.br/assets/img/${postdetails[0].avatar}`}
-              alt={postdetails[0]._id}
+            <img
+              src={postdetails.image}
+              alt={postdetails.id}
               width={220}
               height={220}
               className="poster"
             />
           </div>
           <div className="right">
-            <h1>{postdetails[0].original_title}</h1>
-            <p>{postdetails[0].nome}</p>
+            <h1>{postdetails.nome}</h1>
+            <p>{postdetails.descricao}</p>
            
             
            
@@ -96,7 +95,7 @@ const id = router.query;
           <Link href="/">
             <a className="back">voltar</a>
           </Link>
-          <Link href="/produtos/[id]/editar" as={`/produtos/${postdetails[0].id}/editar`}>
+          <Link href="/produtos/[id]/editar" as={`/produtos/${postdetails.id}/editar`}>
             <a>editar</a>
           </Link>
         </DetailsWrapper>
@@ -113,7 +112,7 @@ export async function getServerSideProps(context) {
   const data = await res.json()  
   return { 
     props:{
-      comercio:  data
+      comercioDetails:  data
     }
   }
 }

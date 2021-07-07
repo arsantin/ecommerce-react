@@ -9,13 +9,13 @@ import Layout from '../../../../components/Layout/index'
 const Editar = () => {
   const { postdetails } = useSelector((state: RootState) => state.produto);
   const router = useRouter();
-  const id = router.query;  
+  const url = router.query;  
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchpostdetails(id));
+    dispatch(fetchpostdetails(url));
   }, []);
 
   function updateProduto(data) {     
@@ -26,8 +26,8 @@ const Editar = () => {
     <Layout>    
     <form onSubmit={handleSubmit(updateProduto)}>
       {JSON.stringify(postdetails)}    
-      <input defaultValue={postdetails.id} {...register("id")} />      
-      <input defaultValue={postdetails.title} {...register("title")} />      
+      <label>id:</label><input defaultValue={postdetails.id} {...register("id")} />      
+      <label>Nome:</label><input defaultValue={postdetails.nome} {...register("nome")} />      
       <input type="submit" />
     </form>
     </Layout>

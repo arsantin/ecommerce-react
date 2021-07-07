@@ -27,7 +27,7 @@ export default Index
 
 export async function getServerSideProps(context) {	
 
-	const res = await fetch(`http://localhost:5000`)
+	const res = await fetch(`http://localhost:3000/api/comercio`)
   const data = await res.json()  
   return { 
     props:{

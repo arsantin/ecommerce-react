@@ -2,7 +2,6 @@ import Card from '../components/Card'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { RootState } from '../store/store'
-import { PrismaClient } from '.prisma/client';
 import {
   fetchProdutos
 } from "../store/actions/ProdutosAction";

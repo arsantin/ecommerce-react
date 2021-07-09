@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
     "test": "jest"
@@ -35,6 +35,7 @@
     "babel-plugin-styled-components": "^1.12.0",
     "jest": "^27.0.4",
     "jest-dom": "^4.0.0",
+    "nodemon": "^2.0.10",
     "prisma": "^2.26.0"
   }
 }

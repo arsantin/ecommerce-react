@@ -10,7 +10,7 @@ const pool = mysql.createPool({
 });
 
 export default function userHandler(req, res) {
-  console.log(req.body);
+  
   const {
     query: { id, name },
     method,

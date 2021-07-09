@@ -72,25 +72,15 @@ console.log()
           <meta name={postdetails.title} content={postdetails.nome} />
           <meta property="og:title" content={postdetails.nome} />
           <meta property="og:description" content={postdetails.nome} />
-          <meta property="og:url" content="https://urldeploy.com/" />
+          <meta property="og:url" content="https://guiadeitapoa.herokuapp.com/" />
           <meta property="og:type" content="website"></meta>
         </Head>
         <DetailsWrapper>
-          <div className="left">
-            <img
-              src={postdetails.image}
-              alt={postdetails.id}
-              width={220}
-              height={220}
-              className="poster"
-            />
+          <div className="left">            
           </div>
           <div className="right">
             <h1>{postdetails.nome}</h1>
             <p>{postdetails.descricao}</p>
-           
-            
-           
           </div>
           <Link href="/">
             <a className="back">voltar</a>

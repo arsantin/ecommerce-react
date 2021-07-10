@@ -5,7 +5,7 @@ import { RootState } from '../store/store'
 import {
   fetchProdutos
 } from "../store/actions/ProdutosAction";
-
+import { supabase } from '../services/supabase'
 
 
 function Index({ comercio }) {
@@ -13,10 +13,25 @@ function Index({ comercio }) {
 
 	useEffect(()=>{
 		dispatch(fetchProdutos(comercio));
+		supabase.auth.onAuthStateChange((event, session) => {
+			console.log(session)
+		})
 	},[])
+
+	async function login(){
+		const { error, user } = await supabase.auth.signIn({
+			provider: 'github',
+		})
+		if(error){
+			console.log(error);
+			return;
+		}
+		console.log(user)		
+	}
 
 	return(
 	<>
+	<button onClick={login}>LOGIN</button>
 	{comercio.map((produto)=> {
 		return <Card key={produto.id} produto={produto}/>
 	})}

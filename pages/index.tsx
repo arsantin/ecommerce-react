@@ -1,6 +1,6 @@
 import Card from '../components/Card'
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RootState } from '../store/store'
 import {
   fetchProdutos
@@ -10,12 +10,18 @@ import { supabase } from '../services/supabase'
 
 function Index({ comercio }) {
 	const dispatch = useDispatch();
+	const[dadosiniciais, setDadosiniciais] = useState([]);
+	
 
 	useEffect(()=>{
-		dispatch(fetchProdutos(comercio));
-		supabase.auth.onAuthStateChange((event, session) => {
-			console.log(session)
+		 
+		 supabase.auth.onAuthStateChange((event, session) => {
+			console.log(session)			
 		})
+
+	
+dispatch(fetchProdutos(comercio));
+
 	},[])
 
 	async function login(){
@@ -31,6 +37,7 @@ function Index({ comercio }) {
 
 	return(
 	<>
+	{dadosiniciais && JSON.stringify(dadosiniciais)}
 	<button onClick={login}>LOGIN</button>
 	{comercio.map((produto)=> {
 		return <Card key={produto.id} produto={produto}/>

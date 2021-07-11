@@ -1,6 +1,7 @@
 import axios from "axios";
 import mysql from "mysql";
 
+
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: "us-cdbr-east-04.cleardb.com",
@@ -18,19 +19,18 @@ export default function userHandler(req, res) {
 
   switch (method) {
     case "GET":
-      pool.getConnection((err, connection) => {
-        if(err) throw err;
-        console.log(`conectado como ${connection.threadId}`)
-    
-        connection.query('SELECT * FROM produtos WHERE id = ?', [id], (err, rows) => {
-          connection.release()
-          if(!err){
-            res.send(rows)
-          }else{
-            console.log(err)
-          }
-        })
-      })
+      async function iniciaDBdetails(){
+        let { data: produtos, error } = await supabase
+  .from('produtos')
+  .select('id')
+          if(error){
+            console.error(error)
+            return
+          }          
+          console.log(data)
+          res.send(data)
+      }
+      iniciaDBdetails();
       break;
       case "DELETE":
         pool.getConnection((err, connection) => {

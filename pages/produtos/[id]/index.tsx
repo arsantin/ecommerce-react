@@ -80,7 +80,7 @@ console.log()
           </div>
           <div className="right">
             <h1>{postdetails.nome}</h1>
-            <p>{postdetails.descricao}</p>
+            
           </div>
           <Link href="/">
             <a className="back">voltar</a>

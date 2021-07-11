@@ -1,6 +1,6 @@
 import axios from "axios";
 import mysql from "mysql";
-
+import { supabase } from '../../../../services/supabase'
 
 const pool = mysql.createPool({
   connectionLimit: 10,
@@ -21,8 +21,8 @@ export default function userHandler(req, res) {
     case "GET":
       async function iniciaDBdetails(){
         let { data: produtos, error } = await supabase
-  .from('produtos')
-  .select('id')
+  .from('produtos').select('*')
+  .eq('id', id)
           if(error){
             console.error(error)
             return

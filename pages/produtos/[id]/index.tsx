@@ -99,7 +99,7 @@ export default movieDetails;
 export async function getServerSideProps({ query }) {  
   const id = query.id;
   console.log("id", id)
-	const res = await fetch(`http://localhost:3000/api/comercio/${id}`)
+	const res = await fetch(`http://localhost:3000/api/produtos/${id}`)
   const data = await res.json()  
   return { 
     props:{

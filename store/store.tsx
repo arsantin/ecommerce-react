@@ -17,6 +17,9 @@ export const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
 
+store.subscribe(()=>{
+  console.log("state changed");
+})
 export const persistor = persistStore(store);
 
 

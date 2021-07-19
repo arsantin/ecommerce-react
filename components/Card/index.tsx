@@ -8,7 +8,7 @@ import { adicionarAoCarrinho } from "../../store/actions/CarrinhoAction";
 const MainCard = styled.div`
   margin: 5px;
   padding: 20px;
-  background: #131313;
+  background-image: linear-gradient(to bottom,#0f4b54 0%,#5b8490 100%);
   max-width: 200px;
   color: #fff;
   position: relative;
@@ -69,18 +69,19 @@ const Card = (props) => {
  
   return (
     <MainCard>  
-     
+     <div>
         <div className="card_pic" key={props.produto.id}>
         <img
-            src={props.produto.image}
+            src={`https://vxmhqwsaxnlvxruoplrq.supabase.co/storage/v1/object/public/public/${props.produto.img}`}
             alt=""
-          />          
+          />
+          </div>          
           <Link href="/produtos/[id]" as={`/produtos/${props.produto.id}`}>
             <a>{props.produto.nome}</a></Link>
           
           {quantidade > 1 && <button onClick={()=> setQuantidade(quantidade - 1)}>-</button>}          
           <div>Quero {quantidade} desse!!!</div>
-                    
+               <p>{props.produto.valor}</p>     
           <button onClick={()=> setQuantidade(quantidade + 1)}>+</button>
           <hr/>
           {quantidade > 1 && <div>Total itens: ({quantidade}) - {quantidade * valor} reais</div>}

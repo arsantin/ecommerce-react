@@ -79,8 +79,16 @@ console.log()
           <div className="left">            
           </div>
           <div className="right">
+            <Image 
+            src={`https://vxmhqwsaxnlvxruoplrq.supabase.co/storage/v1/object/public/public/${postdetails.img}`}
+            width={220}
+            height={220} />
             <h1>{postdetails.nome}</h1>
-            
+            <p>{postdetails.descricao}</p>
+            <p>{postdetails.telefone}</p>
+            <p>{postdetails.endereco}</p>
+            <p>coordenadas: {postdetails.lat} - {postdetails.lon}</p>
+            <p>{postdetails.valor}</p>
           </div>
           <Link href="/">
             <a className="back">voltar</a>

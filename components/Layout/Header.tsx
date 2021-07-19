@@ -1,29 +1,64 @@
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from "next/link";
+import { useState, useEffect, createContext } from "react";
 import styled from "styled-components";
-
+import { supabase } from "../../services/supabase";
+import Image from "next/image";
 
 const HeaderWrapper = styled.div`
   text-align: right;
-`
-
+  display: flex;
+`;
 
 const Header = () => {
-  return(
-    <HeaderWrapper>
-      <nav>
-      <Link href="/"><a>Home</a></Link>
-      <Link href="/produtos"><a>Produtos</a></Link>
-        </nav>
-     <img            
-            alt=""
-            width={200}
-            height={40}
-            className="logo" 
-            src="https://w7.pngwing.com/pngs/42/185/png-transparent-fake-news-bank-account-money-balance-others-text-trademark-logo.png"
-          /> 
-    </HeaderWrapper>
-  )
-}
+  const [perfil, setPerfil] = useState(null);
 
-export default Header
+  const initialState = {}
+  const perfilLogado = createContext(initialState);
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((event, session) => {
+      console.log(session);
+      setPerfil(session);
+    });
+    //  dispatch(fetchProdutos(comercio));
+  }, []);
+
+  async function login() {
+    const { error, user } = await supabase.auth.signIn({
+      provider: "github",
+    });
+    if (error) {
+      console.log(error);
+      return;
+    }
+  }
+
+  async function logout() {
+    const { error } = await supabase.auth.signOut();  
+  }
+
+  return (
+    <HeaderWrapper>
+      <img src="img/logo.png"/>
+      <nav>
+        <Link href="/">
+          <a>Home</a>
+        </Link>
+        <Link href="/produtos">
+          <a>Produtos</a>
+        </Link>
+      </nav>    
+      {perfil && (
+        <>
+          <div>Bem vindo(a) {perfil.user.user_metadata.full_name}</div>
+          <Image width={50} height={50} src={perfil.user.user_metadata.avatar_url} />
+          <button onClick={logout}>logout</button>
+        </>
+      )}
+      {!perfil && <><p>Você está deslogado. </p><button onClick={login}>Login</button><button >cadastrar</button></> }
+     
+    </HeaderWrapper>
+  );
+};
+
+export default Header;

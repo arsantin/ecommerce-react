@@ -1,28 +1,20 @@
 import Card from "../components/Card";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { RootState } from "../store/store";
-import { fetchProdutos } from "../store/actions/ProdutosAction";
 import Layout from "../components/Layout";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const IndexWrapper = styled.div`
   display: flex;
-  justify-content: space-around;;
+  justify-content: space-around;
   flex-wrap: wrap;
-`
+`;
 
 function Index({ comercio }) {
-  const dispatch = useDispatch();
-  const [dadosiniciais, setDadosiniciais] = useState([]);
-
   return (
     <Layout>
-      {dadosiniciais && JSON.stringify(dadosiniciais)}
       <IndexWrapper>
-      {comercio.map((produto) => {
-        return <Card key={produto.id} produto={produto} />;
-      })}
+        {comercio.map((produto) => {
+          return <Card key={produto.id} produto={produto} />;
+        })}
       </IndexWrapper>
     </Layout>
   );

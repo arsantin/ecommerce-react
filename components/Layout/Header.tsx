@@ -7,6 +7,8 @@ import Image from "next/image";
 const HeaderWrapper = styled.div`
   text-align: right;
   display: flex;
+  background-color: #000;
+  color: #fff
 `;
 
 const Header = () => {
@@ -22,30 +24,23 @@ const Header = () => {
     });
     //  dispatch(fetchProdutos(comercio));
   }, []);
-
-  async function login() {
-    const { error, user } = await supabase.auth.signIn({
-      provider: "github",
-    });
-    if (error) {
-      console.log(error);
-      return;
-    }
-  }
-
+ 
   async function logout() {
     const { error } = await supabase.auth.signOut();  
   }
 
   return (
     <HeaderWrapper>
-      <img src="img/logo.png"/>
+      <img src="/img/logo.png"/>
       <nav>
         <Link href="/">
           <a>Home</a>
         </Link>
         <Link href="/produtos">
           <a>Produtos</a>
+        </Link>
+        <Link href="/login">
+          <a>login</a>
         </Link>
       </nav>    
       {perfil && (
@@ -54,8 +49,7 @@ const Header = () => {
           <Image width={50} height={50} src={perfil.user.user_metadata.avatar_url} />
           <button onClick={logout}>logout</button>
         </>
-      )}
-      {!perfil && <><p>Você está deslogado. </p><button onClick={login}>Login</button><button >cadastrar</button></> }
+      )}   
      
     </HeaderWrapper>
   );

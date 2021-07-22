@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { supabase } from "../../services/supabase";
 import { useSelector } from 'react-redux'
 import Image from "next/image";
+import { RootState } from "../../../../store/store";
 
 const HeaderWrapper = styled.div`
   text-align: right;
@@ -31,7 +32,7 @@ const HeaderWrapper = styled.div`
 
 const Header = () => { 
  
-  const { user } = useSelector((state) => state.user);
+ const { user } = useSelector((state: RootState) => state.user);
 
   async function logout() {
     const { error } = await supabase.auth.signOut();  

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { supabase } from "../../services/supabase";
 import { useSelector } from 'react-redux'
 import Image from "next/image";
-import { RootState } from "../../../../store/store";
+import { RootState } from "../../store/store";
 
 const HeaderWrapper = styled.div`
   text-align: right;

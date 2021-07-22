@@ -17,13 +17,13 @@ html{
 }
 
 body{
-  background: #fff;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaMN7HsQzxTwLkxKLWc-HIJDAsqr797-q4gQ&usqp=CAU');
   background-attachment: fixed;
   color: #333;
   min-height:100vh;
   padding: 1rem;
   margin-top:0;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Heebo', sans-serif;
 }
 `;
 

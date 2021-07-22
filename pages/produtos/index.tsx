@@ -1,20 +1,32 @@
-import Card from "../../components/Card"
-import { useSelector } from "react-redux";
-import { RootState } from '../../store/store'
-import Layout from '../../components/Layout'
+import Card from "../../components/Card";
+import Layout from "../../components/Layout";
+import styled from "styled-components";
 
-const Produtos = () => {
-  const { produtos } = useSelector(
-    (state:RootState) => state.produto
-  );
-  return(
+const ProdutosWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+`;
+
+function Produtos({ comercio }) {
+  return (
     <Layout>
-    <h1>produtos</h1>    
-    {produtos.results && produtos.results.map(produto => {
-      return <Card produto={produto} key={produto.id}/>  
-    })}
+      <ProdutosWrapper>
+        {comercio.map((produto) => {
+          return <Card key={produto.id} produto={produto} />;
+        })}
+      </ProdutosWrapper>
     </Layout>
-  )
+  );
 }
+export default Produtos;
 
-export default Produtos
+export async function getServerSideProps(context) {
+  const res = await fetch(`http://localhost:3000/api/produtos`);
+  const data = await res.json();
+  return {
+    props: {
+      comercio: data,
+    },
+  };
+}

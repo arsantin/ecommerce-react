@@ -11,6 +11,7 @@ const Login =()=> {
       console.log(error);
       return;
     }
+    
   }
 
   async function loginFacebook() {
@@ -21,6 +22,7 @@ const Login =()=> {
       console.log(error);
       return;
     }
+    
   }
 
   async function logout() {
@@ -29,7 +31,7 @@ const Login =()=> {
 
   return (
     <div>
-      <p>Você está deslogado. </p><button onClick={loginGitHub}>Git login</button><button onClick={loginFacebook}>Facebook login</button><button >cadastrar</button>
+      <p>Você está deslogado. </p><button onClick={loginGitHub}>Git login</button><button onClick={loginFacebook}>Facebook login</button>
     </div>
   )
 }

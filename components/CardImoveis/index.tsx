@@ -5,24 +5,26 @@ import Link from 'next/link'
 import { useDispatch } from "react-redux";
 import { adicionarAoCarrinho } from "../../store/actions/CarrinhoAction";
 
-const MainCard = styled.div`
+const MainCardImoveis = styled.div`
   margin: 50px;
   padding: 20px;
+  border-radius: 25px;
+background: linear-gradient(145deg, #cacaca, #f0f0f0);
+box-shadow:  24px 24px 48px #b8b8b8,
+             -24px -24px 48px #ffffff;
+  max-width: 350px;
   color: #fff;
   position: relative;
-  display: flex;
+  flex-basis: 50%;
   a {
     text-decoration: none;
     color: #333;
   }
   
-  img {    
+  img {
+    max-width: 250px;
     width: 100%;
     height: auto;
-    border-radius: 5px;
-background: linear-gradient(145deg, #e6e6e6, #ffffff);
-box-shadow:  14px 14px 28px #d1d1d1,
-             -14px -14px 28px #ffffff;
   }
   .card_name {
     color: #000;
@@ -54,7 +56,7 @@ box-shadow:  14px 14px 28px #d1d1d1,
   }  
 `;
 
-const Card = (props) => {    
+const CardImoveis = (props) => {    
   const dispatch = useDispatch();
 
   const[quantidade, setQuantidade] = useState(1);
@@ -62,7 +64,7 @@ const Card = (props) => {
   const [ativado, setAtivado] = useState(false)
 
   function incluiNoCarrinho(){
-    const item = props.produto;
+    const item = props.imovel;
     const qt = quantidade;
     const obj = {...item, qt, valor}  
     setAtivado(true);  
@@ -70,29 +72,25 @@ const Card = (props) => {
   }
  
   return (
-    <MainCard>  
+    <MainCardImoveis>  
      <div>
-        <div className="card_pic" key={props.produto.id}>
-        <img
-            src={`https://vxmhqwsaxnlvxruoplrq.supabase.co/storage/v1/object/public/public/${props.produto.img}`}
-            alt=""
-          />
+        <div className="card_pic" key={props.imovel.id}>        
           </div>          
-          <Link href="/produtos/[id]" as={`/produtos/${props.produto.id}`}>
-            <a>{props.produto.nome}</a></Link>
+          <Link href="/imovels/[id]" as={`/imovels/${props.imovel.id}`}>
+            <a>{props.imovel.titulo}</a></Link>
           
           {quantidade > 1 && <button onClick={()=> setQuantidade(quantidade - 1)}>-</button>}          
           <div>Quero {quantidade} desse!!!</div>
-               <p>{props.produto.valor}</p>     
+               <p>{props.imovel.valor}</p>     
           <button onClick={()=> setQuantidade(quantidade + 1)}>+</button>
           <hr/>
           {quantidade > 1 && <div>Total itens: ({quantidade}) - {quantidade * valor} reais</div>}
           <hr/>
-          {quantidade > 0 && <button className={ativado ? "inativo" : "ativo"} disabled={ativado} onClick={incluiNoCarrinho} value={props.produto}>{ativado ? "PRODUTO NO CARRINHO" : "ADICIONAR AO CARRINHO"}</button>}          
+          {quantidade > 0 && <button className={ativado ? "inativo" : "ativo"} disabled={ativado} onClick={incluiNoCarrinho} value={props.imovel}>{ativado ? "PRODUTO NO CARRINHO" : "ADICIONAR AO CARRINHO"}</button>}          
           
         </div>               
-    </MainCard>
+    </MainCardImoveis>
   );
 };
 
-export default Card;
+export default CardImoveis;

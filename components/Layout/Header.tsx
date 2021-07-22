@@ -31,7 +31,7 @@ const HeaderWrapper = styled.div`
 
 const Header = () => { 
  
-  const { user } = useSelector((state: RootState) => state.user);
+  const { user } = useSelector((state) => state.user);
 
   async function logout() {
     const { error } = await supabase.auth.signOut();  

@@ -3,7 +3,8 @@ import * as types from "../types";
 const initialState = {  
   loading: false,
   error: null,
-  carrinho: []
+  carrinho: [],
+  user: null
 };
 
 export const CarrinhoReducer = (state = initialState, action) => {  

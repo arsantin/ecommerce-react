@@ -5,6 +5,7 @@ const initialState = {
   categoria: {},
   loading: false,
   error: null,
+  user: null
 };
 
 export const CategoriaReducer = (state = initialState, action) => {

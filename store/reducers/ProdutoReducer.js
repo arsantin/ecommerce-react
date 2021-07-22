@@ -9,6 +9,7 @@ const initialState = {
   produto: {},
   loading: false,
   error: null,
+  user: null
 };
 
 export const ProdutoReducer = (state = initialState, action) => {

@@ -60,11 +60,17 @@ const Header = () => {
         <>
           <div>Olá {user.user.user_metadata.full_name}</div>
           <p>
-          <Link href="/dashboard">
-          <a>meu perfil</a>
+          <Link href="/minha-conta">
+          <a>minha conta</a>
           </Link>
+          <hr />
+          <Link href="/minha-conta/perfil">
+          <a>perfil</a>
+          </Link>
+          <hr />
+          <button onClick={logout}>sair</button>
           </p>
-          <button onClick={logout}>logout</button>
+          
         </>
       }
         {user == null &&

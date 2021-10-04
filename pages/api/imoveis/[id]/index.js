@@ -12,7 +12,7 @@ export default function userHandler(req, res) {
       console.log("id", id);
       async function iniciaDBdetails() {
         let { data, error } = await supabase
-          .from("produtos")
+          .from("imoveis")
           .select("*")
           .eq("id", id);
         if (error) {

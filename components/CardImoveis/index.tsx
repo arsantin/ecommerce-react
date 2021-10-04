@@ -76,7 +76,7 @@ const CardImoveis = (props) => {
      <div>
         <div className="card_pic" key={props.imovel.id}>        
           </div>          
-          <Link href="/imovels/[id]" as={`/imovels/${props.imovel.id}`}>
+          <Link href="/imoveis/[id]" as={`/imoveis/${props.imovel.id}`}>
             <a>{props.imovel.titulo}</a></Link>
           
           {quantidade > 1 && <button onClick={()=> setQuantidade(quantidade - 1)}>-</button>}          
